@@ -4,13 +4,21 @@ import PostDropdownMenu from "@/components/post/PostDropdownMenu"
 import { Button } from '@/components/ui/button'
 import Link from "next/link"
 
+// Postの型を定義
+interface Post {
+  id: string
+  title: string
+  published: boolean
+  updatedAt: Date | string
+}
+
 export default async function DashBoardPage() {
   const session = await auth()
   const userId = session?.user?.id
   if(!session?.user?.email || !userId){
     throw new Error('不正なリクエストです')
   }
-  const posts = await getOwnPosts(userId)
+  const posts = await getOwnPosts(userId) as Post[]
 
   return (
     <div className="p-4">
@@ -30,7 +38,7 @@ export default async function DashBoardPage() {
           </tr>
         </thead>
         <tbody>
-          { posts.map((post)=> (
+          { posts.map((post: Post)=> (
             <tr key={post.id}>
               <td className="border p-2">{post.title}</td>
               <td className="border p-2 text-center">
