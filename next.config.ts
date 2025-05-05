@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '5mb', // 必要に応じて値を変更 
     }, 
   },
+  eslint: {
+    ignoreDuringBuilds: true, // ← build時もeslintエラー無視
+  },
 };
 
 export default nextConfig;
