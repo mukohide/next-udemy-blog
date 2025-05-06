@@ -4,6 +4,14 @@ import PostDropdownMenu from "@/components/post/PostDropdownMenu"
 import { Button } from '@/components/ui/button'
 import Link from "next/link"
 
+// `getOwnPosts` が返す型を定義
+type OwnPost = {
+  id: string;
+  title: string;
+  published: boolean;
+  updatedAt: Date;
+};
+
 export default async function DashBoardPage() {
   const session = await auth()
   const userId = session?.user?.id
@@ -30,7 +38,7 @@ export default async function DashBoardPage() {
           </tr>
         </thead>
         <tbody>
-          { posts.map((post)=> (
+          { posts.map((post: OwnPost)=> (
             <tr key={post.id}>
               <td className="border p-2">{post.title}</td>
               <td className="border p-2 text-center">
