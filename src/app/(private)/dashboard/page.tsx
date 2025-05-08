@@ -21,7 +21,7 @@ export default async function DashBoardPage() {
   const posts = await getOwnPosts(userId)
 
   return (
-    <div className="p-4">
+    <div className="p-4 relative min-h-[calc(100vh-4rem)]">
       <div className="flex justify-between">
         <h1 className="text-2xl foont-bold mb-4">記事一覧</h1>
         <Button>
@@ -54,6 +54,11 @@ export default async function DashBoardPage() {
           ))}
         </tbody>
       </table>
+      <div className="absolute bottom-10 left-4">
+        <Button variant="outline" className="bg-gray-100">
+          <Link href="/">トップページに戻る</Link>
+        </Button>
+      </div>
     </div>
   )
 }
